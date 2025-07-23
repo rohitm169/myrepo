@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Top Bar</title>
+  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <!-- sliding search bar start -->
+   <div id="searchBar" class="search-bar">
+    <input type="text" placeholder="Search..." />
+    <button>Search</button>
+    <button class="close-btn" onclick="hideSearchBar()">✖</button>
+  </div>
+  <!-- top nav bar -->
+  <div class="top-bar">
+    <div class="social-icons">
+      <a href="#"><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-youtube"></i></a>
+      <a href="#"><i class="fab fa-pinterest-p"></i></a>
+    </div>
+    <h5>Special Offer: Free Shipping on all the orders above $100</h5>
+    <div class="nav-links">
+      <a href="#">Contact</a>
+      <a href="#">Cart</a>
+      <a href="#">Login</a>
+    </div>
+    <!-- top 2 nav bar -->
+  </div>
+  <header class="headd">
+    <div class="logo">
+      <h1>Rocksho</h1>
+    </div>
+    <nav class="navlink">
+      <a href="#">Home </a>
+      <a href="#">Men</a>
+      <a href="#">Women</a>
+      <a href="#">Page </a>
+      <a href="#">Shop</a>
+      <a href="#">Sale</a>
+    </nav>
+     <div class="icons">
+      <a href="#"><i class="fas fa-user"onclick="openPopup()"></i></a>
+      <a href="#"><i class="fas fa-shopping-cart"></i></a>
+      <a href="#" id="open-search" onclick="showSearchBar()"><i class="fas fa-search"></i></a>
+    </div>
+  </header>
+  <!-- div box images -->
+<div class="slider-container">
+    <div class="slider-wrapper" id="sliderWrapper">
+      <!-- Slide 1 -->
+      <div class="slide">
+        <img src="shoes1.jpg" />
+        <img src="shoes2.jpg" />
+        <img src="shoes3.jpg" />
+        <img src="shoes4.jpg" />
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="slide">
+        <img src="shoes2.jpg" />
+        <img src="shoes6.jpg" />
+        <img src="shoes7.jpg" />
+        <img src="shoes9.jpg" />
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="slide">
+        <img src="shoes4.jpg" />
+        <img src="shoes8.jpg" />
+        <img src="shoes7.jpg" />
+        <img src="shoes10.jpg" />
+      </div>
+    </div>
+  </div>
+  <!-- registration box -->
+  <!-- dot slider -->
+   <div class="dots">
+    <span class="dot active" onclick="showSlide(0)"></span>
+    <span class="dot" onclick="showSlide(1)"></span>
+    <span class="dot" onclick="showSlide(2)"></span>
+  </div>
+  <!-- 2nd slider container -->
+  <div class="slider-container2">
+    <div class="slider-wrapper2" id="sliderWrapper2">
+      <!-- Slide 1 -->
+      <div class="slide2">
+        <img src="shoes1.jpg" />
+        <img src="shoes2.jpg" />
+        <img src="shoes3.jpg" />
+        <img src="shoes4.jpg" />
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="slide2">
+        <img src="shoes2.jpg" />
+        <img src="shoes6.jpg" />
+        <img src="shoes7.jpg" />
+        <img src="shoes9.jpg" />
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="slide2">
+        <img src="shoes4.jpg" />
+        <img src="shoes8.jpg" />
+        <img src="shoes7.jpg" />
+        <img src="shoes10.jpg" />
+      </div>
+    </div>
+  </div>
+  <!-- 2nd doted slider -->
+
+  <div class="dots2">
+    <span class="dot2 active2" onclick="showSlide2(0)"></span>
+    <span class="dot2" onclick="showSlide2(1)"></span>
+    <span class="dot2" onclick="showSlide2(2)"></span>
+  </div>
+<!-- script tag start -->
+   <div class="overlay" id="popupForm">
+    <div class="popup-box">
+      <span class="close-btn" onclick="closePopup()">×</span>
+      <h3 style="color: white;">Registration</h3>
+      <div class="error" id="errorMsg"></div>
+      <form onsubmit="return validateForm()">
+        <input type="text" id="name" placeholder="Name">
+        <input type="text" id="email" placeholder="Email">
+        <input type="password" id="password" placeholder="Password">
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+  <script>
+   function showSearchBar() {
+      document.getElementById('searchBar').style.display = 'flex';
+    }
+
+    function hideSearchBar() {
+      document.getElementById('searchBar').style.display = 'none';
+    }
+     function showSlide(index) {
+      const wrapper = document.getElementById('sliderWrapper');
+      wrapper.style.transform = `translateX(-${index * 100}%)`;
+
+      const dots = document.querySelectorAll('.dot');
+      dots.forEach(dot => dot.classList.remove('active'));
+      dots[index].classList.add('active');
+    }
+    // 2nd slider -----
+    function showSlide2(index) {
+      const wrapper2 = document.getElementById('sliderWrapper2');
+      wrapper2.style.transform = `translateX(-${index * 100}%)`;
+
+      const dots2 = document.querySelectorAll('.dot2');
+      dots2.forEach(dot2 => dot2.classList.remove('active2'));
+      dots2[index].classList.add('active2');
+    }
+    // popup start
+    function openPopup() {
+      document.getElementById("popupForm").style.display = "flex";
+    }
+
+    // Close popup
+    function closePopup() {
+      document.getElementById("popupForm").style.display = "none";
+    }
+
+    // Validation function
+    function validateForm() {
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
+      const errorMsg = document.getElementById("errorMsg");
+
+      errorMsg.innerHTML = "";
+
+      if (name === "") {
+        errorMsg.innerHTML = "Name is required.";
+        return false;
+      }
+
+      if (email === "" || !email.includes("@gmail") || !email.includes(".com")) {
+        errorMsg.innerHTML = "Enter a valid email.";
+        return false;
+      }
+
+      if (password.length < 6) {
+        errorMsg.innerHTML = "Password must be at least 6 characters.";
+        return false;
+      }
+
+      alert("Registration successful!");
+      closePopup(); // Close the popup after success
+      return false; // Prevent actual form submission for demo
+    }
+</script>
+
+</body>
+</html>
